@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Livraria CLS | Destaques</title>
+    <title>Livraria CLS | Fórum & Resenhas</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="bg-stone-900 text-stone-100 min-h-screen overflow-x-hidden">
+<body class="bg-stone-900 text-stone-100 min-h-screen flex flex-col justify-between overflow-x-hidden">
 
     <!-- CABEÇALHO UNIFICADO PADRÃO -->
     <nav class="bg-stone-950 text-white sticky top-0 z-40 shadow-2xl backdrop-blur-md bg-opacity-95 border-b border-stone-800">
@@ -22,16 +22,16 @@
                     </span>
                 </a>
                 
-                <!-- LINKS PRINCIPAIS (Destaques marcado como ativo) -->
+                <!-- LINKS PRINCIPAIS -->
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="index.html" class="nav-link text-stone-300 hover:text-gold transition">Início</a>
-                    <a href="destaques.html" class="nav-link text-gold font-bold transition">Destaques</a>
+                    <a href="destaques.html" class="nav-link text-stone-300 hover:text-gold transition">Destaques</a>
                     <a href="catalogo.html" class="nav-link text-stone-300 hover:text-gold transition">Catálogo</a>
-                    <a href="match.html" class="btn-match-nav inline-flex items-center space-x-2 bg-amber-950/50 border border-amber-500/40 text-amber-400 px-4 py-1.5 rounded-full hover:bg-amber-900/50 transition">
+                    <a href="match.html" class="btn-match-nav inline-flex items-center space-x-2 bg-amber-950/50 border border-amber-500/40 text-amber-400 px-4 py-1.5 rounded-full hover:bg-amber-900/50 transition font-bold shadow-md">
                         <i class="fa-solid fa-fire text-amber-400 animate-bounce"></i> 
                         <span>Book Match</span>
                     </a>
-                    <a href="forum.html" class="nav-link text-stone-300 hover:text-gold transition">Fórum & Resenhas</a>
+                    <a href="forum.html" class="nav-link text-amber-400 font-bold transition">Fórum & Resenhas</a>
                 </div>
 
                 <!-- ÍCONES DA DIREITA -->
@@ -41,13 +41,13 @@
                         <i class="fa-regular fa-heart"></i>
                     </a>
 
-                    <!-- PERFIL (ABRE MODAL DE LOGIN/CADASTRO OU NAVEGA PARA PERFIL) -->
+                    <!-- PERFIL -->
                     <button onclick="handleProfileClick(event)" id="nav-profile-btn" class="icon-btn relative text-stone-300 hover:text-gold transition text-xl p-1" title="Perfil / Minha Conta">
                         <i class="fa-regular fa-user" id="nav-profile-icon"></i>
                         <span id="user-badge" class="hidden absolute -top-1 -right-1 bg-amber-400 w-2.5 h-2.5 rounded-full border border-stone-950"></span>
                     </button>
                     
-                    <!-- CARRINHO (ABRE A SESSÃO "SEU CARRINHO") -->
+                    <!-- CARRINHO -->
                     <button onclick="toggleCart()" class="icon-btn relative text-stone-300 hover:text-gold transition text-xl p-1" title="Carrinho">
                         <i class="fa-solid fa-bag-shopping"></i>
                         <span id="cart-count" class="absolute -top-2 -right-2 bg-amber-400 text-stone-950 text-xs font-black rounded-full h-5 w-5 flex items-center justify-center border-2 border-stone-950 shadow-md">0</span>
@@ -58,70 +58,57 @@
     </nav>
 
     <!-- CONTEÚDO PRINCIPAL -->
-    <main class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div class="text-center mb-16">
-            <h1 class="text-4xl md:text-6xl font-black logo-font text-gold mb-4">Obras em Destaque</h1>
-            <p class="text-stone-400 text-lg max-w-2xl mx-auto">Os livros mais influentes e aclamados da semana selecionados pelo nosso conselho editorial.</p>
+    <main class="max-w-4xl mx-auto px-4 py-12 flex-1 w-full">
+        <div class="mb-8">
+            <span class="text-amber-400 text-xs font-bold uppercase tracking-widest bg-amber-950/40 border border-amber-500/30 px-3 py-1 rounded-full">Comunidade Literária</span>
+            <h1 class="text-3xl md:text-4xl font-black logo-font text-gold mt-3 mb-2">Fórum de Leitores & Resenhas</h1>
+            <p class="text-stone-400 text-sm">Compartilhe suas impressões, debata teorias e descubra novas leituras recomendadas pela comunidade.</p>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-            <!-- Card 1 -->
-            <div class="bg-stone-800/80 border border-stone-700/60 p-6 rounded-2xl shadow-2xl book-card flex flex-col justify-between">
-                <div>
-                    <div class="relative overflow-hidden rounded-xl mb-6 group cursor-pointer" onclick="window.location.href='livro.html'">
-                        <img src="https://m.media-amazon.com/images/I/91M9xPIf10L._AC_UF1000,1000_QL80_.jpg" alt="A Guerra dos Tronos" class="w-full h-96 object-cover group-hover:scale-105 transition duration-500">
-                        <div class="absolute top-3 right-3 bg-stone-900/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-gold border border-gold/30">#1 Bestseller</div>
+        <!-- CARD PARA CRIAR RESENHA -->
+        <div class="bg-stone-800/90 border border-stone-700/80 p-6 md:p-8 rounded-3xl shadow-2xl mb-8">
+            <h3 class="font-bold text-xl mb-4 logo-font text-white flex items-center gap-2">
+                <i class="fa-solid fa-pen-nib text-gold"></i> Deixe sua Resenha
+            </h3>
+            <textarea id="forum-input" class="w-full p-4 bg-stone-900 border border-stone-700 rounded-xl text-stone-100 mb-4 focus:outline-none focus:border-amber-500 transition" rows="3" placeholder="O que achou da sua última leitura? Qual livro te marcou?"></textarea>
+            <button onclick="alert('Resenha publicada com sucesso na comunidade!')" class="bg-gold text-stone-950 px-8 py-3 rounded-xl font-black hover:bg-white transition shadow-lg">Publicar Resenha</button>
+        </div>
+
+        <!-- LISTA DE RESENHAS -->
+        <div class="space-y-4">
+            <div class="bg-stone-800/90 border border-stone-700/80 p-6 rounded-2xl shadow-xl">
+                <div class="flex items-center gap-4 mb-3">
+                    <div class="w-12 h-12 rounded-full bg-amber-950 border border-amber-500/40 text-amber-400 font-bold flex items-center justify-center text-lg shadow-md">MV</div>
+                    <div>
+                        <h4 class="font-bold text-lg text-white">Marcelo Vitor</h4>
+                        <span class="text-xs text-amber-400">Avaliou "1984" - ★★★★★</span>
                     </div>
-                    <span class="text-xs font-bold text-amber-400 uppercase tracking-widest">Fantasia Épica</span>
-                    <h3 class="font-bold text-2xl logo-font text-white mt-1 mb-2">A Guerra dos Tronos</h3>
-                    <p class="text-sm text-stone-400 mb-4">George R.R. Martin</p>
                 </div>
-                <div class="flex justify-between items-center pt-4 border-t border-stone-700/50">
-                    <span class="text-2xl font-black text-gold">R$ 89,90</span>
-                    <button onclick="addToCart(event, 1, 'A Guerra dos Tronos', 89.90, 'https://m.media-amazon.com/images/I/91M9xPIf10L._AC_UF1000,1000_QL80_.jpg')" class="bg-gold text-navy font-bold px-5 py-2.5 rounded-xl hover:bg-white transition shadow-lg text-stone-950">Adicionar</button>
-                </div>
+                <p class="text-stone-300 leading-relaxed text-sm md:text-base">Leitura impressionante e extremamente atual. O ritmo do livro prende do início ao fim e nos faz refletir profundamente sobre o mundo moderno!</p>
             </div>
 
-            <!-- Card 2 -->
-            <div class="bg-stone-800/80 border border-stone-700/60 p-6 rounded-2xl shadow-2xl book-card flex flex-col justify-between">
-                <div>
-                    <div class="relative overflow-hidden rounded-xl mb-6 group cursor-pointer" onclick="window.location.href='livro.html'">
-                        <img src="https://m.media-amazon.com/images/I/81ibfYk4qmL._AC_UF1000,1000_QL80_.jpg" alt="1984" class="w-full h-96 object-cover group-hover:scale-105 transition duration-500">
-                        <div class="absolute top-3 right-3 bg-stone-900/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-gold border border-gold/30">Clássico</div>
+            <div class="bg-stone-800/90 border border-stone-700/80 p-6 rounded-2xl shadow-xl">
+                <div class="flex items-center gap-4 mb-3">
+                    <div class="w-12 h-12 rounded-full bg-amber-950 border border-amber-500/40 text-amber-400 font-bold flex items-center justify-center text-lg shadow-md">JS</div>
+                    <div>
+                        <h4 class="font-bold text-lg text-white">Júlia Souza</h4>
+                        <span class="text-xs text-amber-400">Avaliou "Duna" - ★★★★★</span>
                     </div>
-                    <span class="text-xs font-bold text-amber-400 uppercase tracking-widest">Ficção Científica</span>
-                    <h3 class="font-bold text-2xl logo-font text-white mt-1 mb-2">1984</h3>
-                    <p class="text-sm text-stone-400 mb-4">George Orwell</p>
                 </div>
-                <div class="flex justify-between items-center pt-4 border-t border-stone-700/50">
-                    <span class="text-2xl font-black text-gold">R$ 45,50</span>
-                    <button onclick="addToCart(event, 2, '1984', 45.50, 'https://m.media-amazon.com/images/I/81ibfYk4qmL._AC_UF1000,1000_QL80_.jpg')" class="bg-gold text-navy font-bold px-5 py-2.5 rounded-xl hover:bg-white transition shadow-lg text-stone-950">Adicionar</button>
-                </div>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="bg-stone-800/80 border border-stone-700/60 p-6 rounded-2xl shadow-2xl book-card flex flex-col justify-between">
-                <div>
-                    <div class="relative overflow-hidden rounded-xl mb-6 group cursor-pointer" onclick="window.location.href='livro.html'">
-                        <img src="https://m.media-amazon.com/images/I/81q60W654BL._AC_UF1000,1000_QL80_.jpg" alt="Duna" class="w-full h-96 object-cover group-hover:scale-105 transition duration-500">
-                        <div class="absolute top-3 right-3 bg-stone-900/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-gold border border-gold/30">Premiado</div>
-                    </div>
-                    <span class="text-xs font-bold text-amber-400 uppercase tracking-widest">Sci-Fi Épico</span>
-                    <h3 class="font-bold text-2xl logo-font text-white mt-1 mb-2">Duna</h3>
-                    <p class="text-sm text-stone-400 mb-4">Frank Herbert</p>
-                </div>
-                <div class="flex justify-between items-center pt-4 border-t border-stone-700/50">
-                    <span class="text-2xl font-black text-gold">R$ 69,90</span>
-                    <button onclick="addToCart(event, 3, 'Duna', 69.90, 'https://m.media-amazon.com/images/I/81q60W654BL._AC_UF1000,1000_QL80_.jpg')" class="bg-gold text-navy font-bold px-5 py-2.5 rounded-xl hover:bg-white transition shadow-lg text-stone-950">Adicionar</button>
-                </div>
+                <p class="text-stone-300 leading-relaxed text-sm md:text-base">A construção de universo do Frank Herbert é simplesmente genial. Uma obra-prima da ficção científica que todo fã do gênero precisa ler.</p>
             </div>
         </div>
     </main>
 
-    <!-- MÁSCARA ESCURA DE FUNDO DO CARRINHO (Z-INDEX 50) -->
+    <!-- FOOTER -->
+    <footer class="bg-stone-950 border-t border-stone-800 py-6 text-center text-stone-500 text-xs mt-12">
+        <p>&copy; 2026 Livraria CLS. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- MÁSCARA ESCURA DE FUNDO DO CARRINHO -->
     <div id="cart-overlay" onclick="toggleCart(false)" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-[50] hidden transition-opacity"></div>
 
-    <!-- PAINEL LATERAL "SEU CARRINHO" (DRAWER - Z-INDEX 60) -->
+    <!-- PAINEL LATERAL "SEU CARRINHO" (DRAWER - ÚNICO E CORRETO) -->
     <div id="cart-sidebar" class="fixed top-0 right-0 w-full max-w-md h-full bg-stone-900 text-stone-100 z-[60] shadow-2xl p-6 flex flex-col border-l border-stone-800 transform translate-x-full transition-transform duration-300 ease-in-out">
         <div class="flex justify-between items-center pb-4 border-b border-stone-800">
             <div class="flex items-center gap-2">
@@ -151,14 +138,13 @@
         </div>
     </div>
 
-    <!-- MODAL DE CADASTRO E LOGIN (Z-INDEX 70) -->
+    <!-- MODAL DE CADASTRO E LOGIN -->
     <div id="auth-modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-[70] flex items-center justify-center p-4">
         <div class="bg-stone-900 border border-stone-700/80 w-full max-w-md rounded-2xl shadow-2xl overflow-hidden relative">
             <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-stone-400 hover:text-white text-xl">
                 <i class="fa-solid fa-xmark"></i>
             </button>
             
-            <!-- ABAS DE NAVEGAÇÃO ENTRE LOGIN E CADASTRO -->
             <div class="flex border-b border-stone-800 text-center text-sm">
                 <button id="tab-login" onclick="switchAuthTab('login')" class="flex-1 py-3.5 font-bold border-b-2 border-amber-500 text-gold bg-stone-800/50">Fazer Login</button>
                 <button id="tab-register" onclick="switchAuthTab('register')" class="flex-1 py-3.5 font-bold border-b-2 border-transparent text-stone-400 hover:text-white">Criar Conta (Cadastrar)</button>
@@ -204,6 +190,6 @@
         </div>
     </div>
 
-    <script src="../script/script.js"></script>
+    <script src="script/script.js"></script>
 </body>
 </html>
