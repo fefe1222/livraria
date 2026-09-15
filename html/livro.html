@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livraria CLS | Detalhes do Livro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="bg-stone-50 text-stone-800">
+
+    <nav class="bg-navy text-white sticky top-0 z-50 border-b border-amber-500/20">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
+            <a href="index.html" class="logo-font text-3xl font-black">Livraria <span class="text-gold">CLS</span></a>
+            <a href="catalogo.html" class="nav-link">Voltar ao Catálogo</a>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 py-16">
+        <a href="index.html" class="text-stone-500 hover:text-navy mb-8 transition font-semibold flex items-center gap-2">
+            <i class="fa-solid fa-arrow-left"></i> Voltar para Início
+        </a>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 bg-white p-8 md:p-12 rounded-3xl shadow-lg border border-stone-200">
+            <div>
+                <img src="https://m.media-amazon.com/images/I/91M9xPIf10L._AC_UF1000,1000_QL80_.jpg" class="w-full max-w-md mx-auto rounded-2xl shadow-2xl border" alt="Capa do livro">
+            </div>
+            <div class="flex flex-col justify-center">
+                <span class="bg-gold/20 text-navy font-bold px-4 py-1 rounded-full text-xs w-fit mb-4 uppercase tracking-widest">Fantasia Épica</span>
+                <h1 class="text-4xl md:text-5xl font-black logo-font mb-3">A Guerra dos Tronos</h1>
+                <p class="text-xl text-stone-600 mb-6">Autor: <span class="font-bold text-navy">George R.R. Martin</span></p>
+                <div class="flex items-center gap-2 mb-6 text-amber-500">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                    <span class="text-stone-500 text-sm font-semibold">(4.8 / 5 em 142 avaliações)</span>
+                </div>
+                <h3 class="font-bold text-xl mb-3 logo-font">Sinopse</h3>
+                <p class="text-stone-600 mb-8 leading-relaxed text-lg">Em uma terra onde as estações podem durar décadas e a fome é iminente, nobres famílias travam uma guerra mortal pelo trono de ferro de Westeros...</p>
+                <div class="flex items-center gap-6">
+                    <span class="text-4xl font-black text-navy">R$ 89,90</span>
+                    <button onclick="addToCart(1, 'A Guerra dos Tronos', 89.90, 'https://m.media-amazon.com/images/I/91M9xPIf10L._AC_UF1000,1000_QL80_.jpg')" class="bg-navy text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-gold hover:text-navy transition shadow-xl">Adicionar ao Carrinho</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../script/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livraria CLS | Book Match</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="bg-stone-900 text-stone-100 min-h-screen flex flex-col justify-between overflow-x-hidden">
+
+    <!-- CABEÇALHO UNIFICADO PADRÃO -->
+    <nav class="bg-stone-950 text-white sticky top-0 z-40 shadow-2xl backdrop-blur-md bg-opacity-95 border-b border-stone-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- LOGO -->
+                <a href="index.html" class="flex-shrink-0 cursor-pointer group">
+                    <span class="logo-font text-3xl font-black tracking-wider text-white group-hover:text-gold transition duration-300">
+                        LIVRARIA <span class="text-gold group-hover:text-white transition duration-300">CLS</span>
+                    </span>
+                </a>
+                
+                <!-- LINKS PRINCIPAIS -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link text-stone-300 hover:text-gold transition">Início</a>
+                    <a href="destaques.html" class="nav-link text-stone-300 hover:text-gold transition">Destaques</a>
+                    <a href="catalogo.html" class="nav-link text-stone-300 hover:text-gold transition">Catálogo</a>
+                    <a href="match.html" class="btn-match-nav inline-flex items-center space-x-2 bg-amber-950/50 border border-amber-500/40 text-amber-400 px-4 py-1.5 rounded-full hover:bg-amber-900/50 transition font-bold shadow-md">
+                        <i class="fa-solid fa-fire text-amber-400 animate-bounce"></i> 
+                        <span>Book Match</span>
+                    </a>
+                    <a href="forum.html" class="nav-link text-stone-300 hover:text-gold transition">Fórum & Resenhas</a>
+                </div>
+
+                <!-- ÍCONES DA DIREITA -->
+                <div class="flex space-x-5 items-center">
+                    <!-- FAVORITOS / WISHLIST -->
+                    <a href="wishlist.html" class="icon-btn text-stone-300 hover:text-gold transition text-xl" title="Lista de Desejos">
+                        <i class="fa-regular fa-heart"></i>
+                    </a>
+
+                    <!-- PERFIL -->
+                    <button onclick="handleProfileClick(event)" id="nav-profile-btn" class="icon-btn relative text-stone-300 hover:text-gold transition text-xl p-1" title="Perfil / Minha Conta">
+                        <i class="fa-regular fa-user" id="nav-profile-icon"></i>
+                        <span id="user-badge" class="hidden absolute -top-1 -right-1 bg-amber-400 w-2.5 h-2.5 rounded-full border border-stone-950"></span>
+                    </button>
+                    
+                    <!-- CARRINHO -->
+                    <button onclick="toggleCart()" class="icon-btn relative text-stone-300 hover:text-gold transition text-xl p-1" title="Carrinho">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span id="cart-count" class="absolute -top-2 -right-2 bg-amber-400 text-stone-950 text-xs font-black rounded-full h-5 w-5 flex items-center justify-center border-2 border-stone-950 shadow-md">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTEÚDO PRINCIPAL: BOOK MATCH -->
+    <main class="max-w-2xl mx-auto px-4 py-12 text-center flex-1 flex flex-col justify-center w-full">
+        <div class="mb-8">
+            <span class="text-amber-400 text-xs font-bold uppercase tracking-widest bg-amber-950/40 border border-amber-500/30 px-3 py-1 rounded-full">Descubra sua alma gêmea literária</span>
+            <h1 class="text-4xl md:text-5xl font-black logo-font text-gold mt-3 mb-2">Book Match</h1>
+            <p class="text-stone-400 text-base max-w-md mx-auto">Deslize ou escolha abaixo para encontrar livros que combinam perfeitamente com o seu estilo.</p>
+        </div>
+        
+        <!-- CARD DO LIVRO MATCH -->
+        <div id="match-card" class="bg-stone-800/90 border border-stone-700/80 p-6 md:p-8 rounded-3xl shadow-2xl max-w-md mx-auto w-full transition-all duration-300 relative group">
+            
+            <!-- BADGE DE GÊNERO -->
+            <div class="absolute top-6 left-6 z-10 bg-stone-950/80 backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs font-bold text-amber-400 border border-amber-500/30 shadow-lg">
+                <span id="match-genre">Sci-Fi Épico</span>
+            </div>
+
+            <!-- IMAGEM DO LIVRO -->
+            <div class="overflow-hidden rounded-2xl mb-6 shadow-xl bg-stone-900 h-96 flex items-center justify-center">
+                <img id="match-img" src="https://m.media-amazon.com/images/I/81q60W654BL._AC_UF1000,1000_QL80_.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Capa do Livro">
+            </div>
+
+            <!-- INFORMAÇÕES -->
+            <h3 id="match-title" class="text-2xl md:text-3xl font-black logo-font text-white mb-1">Duna</h3>
+            <p id="match-author" class="text-stone-400 text-sm md:text-base mb-3 font-medium">Frank Herbert</p>
+            
+            <div class="flex justify-center items-center gap-4 mb-6">
+                <span id="match-price" class="text-2xl font-black text-gold">R$ 69,90</span>
+            </div>
+
+            <!-- BOTÕES DE AÇÃO (PASSAR / DAR MATCH) -->
+            <div class="flex justify-center items-center gap-8 pt-4 border-t border-stone-700/60">
+                <button onclick="nextMatch(false)" class="w-16 h-16 bg-stone-900/80 text-stone-400 border border-stone-700 rounded-full hover:bg-rose-950/50 hover:border-rose-500 hover:text-rose-400 text-2xl transition shadow-lg flex items-center justify-center group/btn" title="Passar">
+                    <i class="fa-solid fa-xmark group-hover/btn:scale-125 transition-transform"></i>
+                </button>
+                <button onclick="nextMatch(true)" class="w-20 h-20 bg-amber-400 text-stone-950 rounded-full hover:bg-white text-3xl transition shadow-xl transform hover:scale-110 flex items-center justify-center font-black group/btn" title="Match Perfeito!">
+                    <i class="fa-solid fa-heart group-hover/btn:scale-125 transition-transform text-rose-600"></i>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-stone-950 border-t border-stone-800 py-6 text-center text-stone-500 text-xs">
+        <p>&copy; 2026 Livraria CLS. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- MÁSCARA ESCURA DE FUNDO DO CARRINHO -->
+    <div id="cart-overlay" onclick="toggleCart(false)" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-[50] hidden transition-opacity"></div>
+
+    <!-- PAINEL LATERAL "SEU CARRINHO" (DRAWER) -->
+    <div id="cart-sidebar" class="fixed top-0 right-0 w-full max-w-md h-full bg-stone-900 text-stone-100 z-[60] shadow-2xl p-6 flex flex-col border-l border-stone-800 transform translate-x-full transition-transform duration-300 ease-in-out">
+        <div class="flex justify-between items-center pb-4 border-b border-stone-800">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-bag-shopping text-gold text-xl"></i>
+                <h3 class="text-2xl font-bold logo-font text-gold">Seu Carrinho</h3>
+            </div>
+            <button onclick="toggleCart(false)" class="text-stone-400 hover:text-white text-2xl p-2" title="Fechar">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- LISTA DOS LIVROS NO CARRINHO -->
+        <div id="cart-items-container" class="flex-1 overflow-y-auto py-4 space-y-4"></div>
+
+        <!-- SUBTOTAL E CHECKOUT -->
+        <div class="pt-4 border-t border-stone-800 space-y-3">
+            <div class="flex justify-between items-center text-stone-400 text-sm">
+                <span>Subtotal:</span>
+                <span id="cart-subtotal-price" class="text-stone-200 font-semibold">R$ 0,00</span>
+            </div>
+            <div class="flex justify-between items-center font-bold text-xl pb-2">
+                <span class="text-white">Total:</span>
+                <span id="cart-total-price" class="text-gold text-2xl font-black">R$ 0,00</span>
+            </div>
+            <a href="carrinho.html" class="block text-center w-full bg-stone-800 text-gold border border-stone-700 font-bold py-3 rounded-xl text-sm hover:bg-stone-700 transition">Ver Carrinho Completo</a>
+            <a href="checkout.html" class="block text-center w-full bg-gold text-stone-950 font-black py-3.5 rounded-xl text-base hover:bg-white transition shadow-lg">Finalizar Compra / Pagamento</a>
+        </div>
+    </div>
+
+    <!-- MODAL DE CADASTRO E LOGIN -->
+    <div id="auth-modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-[70] flex items-center justify-center p-4">
+        <div class="bg-stone-900 border border-stone-700/80 w-full max-w-md rounded-2xl shadow-2xl overflow-hidden relative">
+            <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-stone-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <div class="flex border-b border-stone-800 text-center text-sm">
+                <button id="tab-login" onclick="switchAuthTab('login')" class="flex-1 py-3.5 font-bold border-b-2 border-amber-500 text-gold bg-stone-800/50">Fazer Login</button>
+                <button id="tab-register" onclick="switchAuthTab('register')" class="flex-1 py-3.5 font-bold border-b-2 border-transparent text-stone-400 hover:text-white">Criar Conta (Cadastrar)</button>
+            </div>
+
+            <!-- FORMULÁRIO DE LOGIN -->
+            <form id="login-form" onsubmit="handleLogin(event)" class="p-6 space-y-4">
+                <div class="text-center mb-4">
+                    <h3 class="text-2xl font-bold logo-font text-gold">Acessar sua Conta</h3>
+                    <p class="text-xs text-stone-400 mt-1">Insira seus dados para entrar na Livraria CLS</p>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-stone-400 uppercase mb-1">E-mail</label>
+                    <input type="email" id="login-email" required placeholder="seuemail@exemplo.com" class="w-full bg-stone-800 border border-stone-700 rounded-xl px-4 py-2.5 text-stone-100 focus:outline-none focus:border-amber-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-stone-400 uppercase mb-1">Senha</label>
+                    <input type="password" id="login-password" required placeholder="••••••••" class="w-full bg-stone-800 border border-stone-700 rounded-xl px-4 py-2.5 text-stone-100 focus:outline-none focus:border-amber-500">
+                </div>
+                <button type="submit" class="w-full bg-gold text-stone-950 font-bold py-3.5 rounded-xl hover:bg-white transition shadow-lg mt-2">Entrar</button>
+            </form>
+
+            <!-- FORMULÁRIO DE CADASTRO -->
+            <form id="register-form" onsubmit="handleRegister(event)" class="p-6 space-y-4 hidden">
+                <div class="text-center mb-4">
+                    <h3 class="text-2xl font-bold logo-font text-gold">Criar Novo Perfil</h3>
+                    <p class="text-xs text-stone-400 mt-1">Cadastre-se para guardar seus livros favoritos</p>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-stone-400 uppercase mb-1">Nome Completo</label>
+                    <input type="text" id="reg-name" required placeholder="Seu nome" class="w-full bg-stone-800 border border-stone-700 rounded-xl px-4 py-2.5 text-stone-100 focus:outline-none focus:border-amber-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-stone-400 uppercase mb-1">E-mail</label>
+                    <input type="email" id="reg-email" required placeholder="seuemail@exemplo.com" class="w-full bg-stone-800 border border-stone-700 rounded-xl px-4 py-2.5 text-stone-100 focus:outline-none focus:border-amber-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-stone-400 uppercase mb-1">Crie uma Senha</label>
+                    <input type="password" id="reg-password" required placeholder="••••••••" class="w-full bg-stone-800 border border-stone-700 rounded-xl px-4 py-2.5 text-stone-100 focus:outline-none focus:border-amber-500">
+                </div>
+                <button type="submit" class="w-full bg-gold text-stone-950 font-bold py-3.5 rounded-xl hover:bg-white transition shadow-lg mt-2">Cadastrar Perfil</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SCRIPT DE SUPORTE PARA O BOOK MATCH (GARANTE O FUNCIONAMENTO) -->
+    <script>
+        const matchBooks = [
+            { title: "Duna", author: "Frank Herbert", price: "R$ 69,90", genre: "Sci-Fi Épico", img: "https://m.media-amazon.com/images/I/81q60W654BL._AC_UF1000,1000_QL80_.jpg" },
+            { title: "A Guerra dos Tronos", author: "George R.R. Martin", price: "R$ 89,90", genre: "Fantasia Épica", img: "https://m.media-amazon.com/images/I/91M9xPIf10L._AC_UF1000,1000_QL80_.jpg" },
+            { title: "1984", author: "George Orwell", price: "R$ 45,50", genre: "Ficção Científica", img: "https://m.media-amazon.com/images/I/81ibfYk4qmL._AC_UF1000,1000_QL80_.jpg" },
+            { title: "O Senhor dos Anéis", author: "J.R.R. Tolkien", price: "R$ 119,90", genre: "Alta Fantasia", img: "https://m.media-amazon.com/images/I/71j+jfW0WdL._AC_UF1000,1000_QL80_.jpg" }
+        ];
+        let currentMatchIndex = 0;
+
+        function nextMatch(isLiked) {
+            if (isLiked) {
+                // Feedback visual rápido de Match
+                const card = document.getElementById('match-card');
+                card.classList.add('scale-95', 'opacity-50');
+                setTimeout(() => {
+                    card.classList.remove('scale-95', 'opacity-50');
+                }, 200);
+            }
+            
+            currentMatchIndex = (currentMatchIndex + 1) % matchBooks.length;
+            const book = matchBooks[currentMatchIndex];
+            
+            document.getElementById('match-img').src = book.img;
+            document.getElementById('match-title').textContent = book.title;
+            document.getElementById('match-author').textContent = book.author;
+            document.getElementById('match-price').textContent = book.price;
+            document.getElementById('match-genre').textContent = book.genre;
+        }
+    </script>
+
+    <script src="../script/script.js"></script>
+</body>
+</html>

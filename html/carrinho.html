@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livraria CLS | Seu Carrinho</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="bg-stone-50 text-stone-800">
+
+    <nav class="bg-navy text-white sticky top-0 z-50 border-b border-amber-500/20">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
+            <a href="index.html" class="logo-font text-3xl font-black">Livraria <span class="text-gold">CLS</span></a>
+            <a href="catalogo.html" class="nav-link">Continuar Comprando</a>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-4 py-16">
+        <h1 class="text-4xl font-black logo-font mb-8">Meu Carrinho de Compras</h1>
+        
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-200">
+            <div id="cart-items-container" class="space-y-4"></div>
+            
+            <div class="pt-6 border-t mt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="text-2xl font-bold">
+                    <span>Total: </span>
+                    <span id="cart-total-price" class="text-navy">R$ 0,00</span>
+                </div>
+                <a href="checkout.html" class="bg-gold text-navy font-bold px-8 py-4 rounded-xl text-lg hover:bg-navy hover:text-white transition shadow-xl">Prosseguir para o Pagamento</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="../script/script.js"></script>
+</body>
+</html>

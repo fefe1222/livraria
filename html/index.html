@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livraria CLS | Início</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="text-stone-800 bg-stone-50 overflow-x-hidden">
+
+    <!-- CABEÇALHO UNIFICADO PADRÃO (INDEX.HTML) -->
+    <nav class="bg-stone-950 text-white sticky top-0 z-40 shadow-2xl backdrop-blur-md bg-opacity-95 border-b border-stone-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- LOGO -->
+                <a href="index.html" class="flex-shrink-0 cursor-pointer group">
+                    <span class="logo-font text-3xl font-black tracking-wider text-white group-hover:text-gold transition duration-300">
+                        LIVRARIA <span class="text-gold group-hover:text-white transition duration-300">CLS</span>
+                    </span>
+                </a>
+                
+                <!-- LINKS PRINCIPAIS -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link text-stone-300 hover:text-gold transition">Início</a>
+                    <a href="destaques.html" class="nav-link text-stone-300 hover:text-gold transition">Destaques</a>
+                    <a href="catalogo.html" class="nav-link text-stone-300 hover:text-gold transition">Catálogo</a>
+                    <a href="match.html" class="btn-match-nav inline-flex items-center space-x-2 bg-amber-950/50 border border-amber-500/40 text-amber-400 px-4 py-1.5 rounded-full hover:bg-amber-900/50 transition">
+                        <i class="fa-solid fa-fire text-amber-400 animate-bounce"></i> 
+                        <span>Book Match</span>
+                    </a>
+                    <a href="forum.html" class="nav-link text-stone-300 hover:text-gold transition">Fórum & Resenhas</a>
+                </div>
+
+                <!-- ÍCONES DA DIREITA -->
+                <div class="flex space-x-5 items-center">
+                    <!-- FAVORITOS / WISHLIST -->
+                    <a href="wishlist.html" class="icon-btn text-stone-300 hover:text-gold transition text-xl" title="Lista de Desejos">
+                        <i class="fa-regular fa-heart"></i>
+                    </a>
+
+                    <!-- PERFIL (ABRE MODAL DE LOGIN/CADASTRO OU NAVEGA PARA PERFIL) -->
+                    <button onclick="handleProfileClick(event)" id="nav-profile-btn" class="icon-btn relative text-stone-300 hover:text-gold transition text-xl p-1" title="Perfil / Minha Conta">
+                        <i class="fa-regular fa-user" id="nav-profile-icon"></i>
+                        <span id="user-badge" class="hidden absolute -top-1 -right-1 bg-amber-400 w-2.5 h-2.5 rounded-full border border-stone-950"></span>
+                    </button>
+                    
+                    <!-- CARRINHO (ABRE A SESSÃO "SEU CARRINHO") -->
+                    <button onclick="toggleCart()" class="icon-btn relative text-stone-300 hover:text-gold transition text-xl p-1" title="Carrinho">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span id="cart-count" class="absolute -top-2 -right-2 bg-amber-400 text-stone-950 text-xs font-black rounded-full h-5 w-5 flex items-center justify-center border-2 border-stone-950 shadow-md">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <main>
+        <section class="relative min-h-[calc(100vh-5rem)] flex items-center justify-center overflow-hidden bg-navy">
+            <div class="absolute inset-0 bg-hero-pattern bg-cover bg-center opacity-25 scale-105"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-navy via-navy/60 to-transparent"></div>
+            
+            <div class="relative z-10 text-center text-white px-6 max-w-5xl mx-auto py-12 slide-up">
+                <span class="inline-block px-4 py-1.5 rounded-full bg-gold/20 text-gold text-xs font-bold uppercase tracking-widest mb-6 border border-gold/40 shadow-lg">
+                    Experiência Literária Imersiva
+                </span>
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-black mb-6 logo-font leading-tight tracking-tight">
+                    Onde as Histórias <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-gold to-amber-500">Encontram Você</span>
+                </h1>
+                <p class="text-lg md:text-2xl mb-10 text-stone-300 font-light max-w-3xl mx-auto leading-relaxed">
+                    Curadoria exclusiva de títulos, algoritmo inteligente de afinidade e uma comunidade feita por leitores apaixonados.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
+                    <a href="match.html" class="btn-match-hero group">
+                        <i class="fa-solid fa-fire text-2xl text-amber-300 group-hover:scale-125 transition transform"></i>
+                        <span class="text-lg font-bold">Testar Book Match</span>
+                    </a>
+                    <a href="catalogo.html" class="px-8 py-4 rounded-full font-bold text-lg text-white border-2 border-amber-500/40 hover:border-gold hover:bg-gold/10 transition duration-300 backdrop-blur-sm">
+                        Explorar Catálogo
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- MÁSCARA ESCURA DE FUNDO DO CARRINHO (Z-INDEX 50) -->
+    <div id="cart-overlay" onclick="toggleCart(false)" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-[50] hidden transition-opacity"></div>
+
+    <!-- PAINEL LATERAL "SEU CARRINHO" (DRAWER - Z-INDEX 60) -->
+    <div id="cart-sidebar" class="fixed top-0 right-0 w-full max-w-md h-full bg-stone-900 text-stone-100 z-[60] shadow-2xl p-6 flex flex-col border-l border-stone-800 transform translate-x-full transition-transform duration-300 ease-in-out">
+        <div class="flex justify-between items-center pb-4 border-b border-stone-800">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-bag-shopping text-gold text-xl"></i>
+                <h3 class="text-2xl font-bold logo-font text-gold">Seu Carrinho</h3>
+            </div>
+            <button onclick="toggleCart(false)" class="text-stone-400 hover:text-white text-2xl p-2" title="Fechar">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- LISTA DOS LIVROS NO CARRINHO -->
+        <div id="cart-items-container" class="flex-1 overflow-y-auto py-4 space-y-4"></div>
+
+        <!-- SUBTOTAL E CHECKOUT -->
+        <div class="pt-4 border-t border-stone-800 space-y-3">
+            <div class="flex justify-between items-center text-stone-400 text-sm">
+                <span>Subtotal:</span>
+                <span id="cart-subtotal-price" class="text-stone-200 font-semibold">R$ 0,00</span>
+            </div>
+            <div class="flex justify-between items-center font-bold text-xl pb-2">
+                <span class="text-white">Total:</span>
+                <span id="cart-total-price" class="text-gold text-2xl font-black">R$ 0,00</span>
+            </div>
+            <a href="carrinho.html" class="block text-center w-full bg-stone-800 text-gold border border-stone-700 font-bold py-3 rounded-xl text-sm hover:bg-stone-700 transition">Ver Carrinho Completo</a>
+            <a href="checkout.html" class="block text-center w-full bg-gold text-navy font-black py-3.5 rounded-xl text-base hover:bg-white transition shadow-lg">Finalizar Compra / Pagamento</a>
+        </div>
+    </div>
+
+    <!-- MODAL DE CADASTRO E LOGIN (Z-INDEX 70) -->
+    <div id="auth-modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-[70] flex items-center justify-center p-4">
+        <div class="bg-stone-900 border border-stone-700/80 w-full max-w-md rounded-2xl shadow-2xl overflow-hidden relative">
+            <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-stone-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <!-- ABAS DE NAVEGAÇÃO ENTRE LOGIN E CADASTRO -->
+            <div class="flex border-b border-stone-800 text-center text-sm">
+                <button id="tab-login" onclick="switchAuthTab('login')" class="flex-1 py-3.5 font-bold border-b-2 border-amber-500 text-gold bg-stone-800/50">Fazer Login</button>
+                <button id="tab-register" onclick="switchAuthTab('register')" class="flex-1 py-3.5 font-bold border-b-2 border-transparent text-stone-400 hover:text-white">Criar Conta (Cadastrar)</button>
+            </div>
+
+            <!-- FORMULÁRIO DE LOGIN -->
+            <form id="login-form" onsubmit="handleLogin(event)" class="p-6 space-y-4">
+                <div class="text-center mb-4">
+                    <h3 class="text-2xl font-bold logo-font text-gold">Acessar sua Conta</h3>
+                    <p class="text-xs text-stone-400 mt-1">Insira seus dados para entrar na Livraria CLS</p>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-stone-400 uppercase mb-1">E-mail</label>
+                    <input type="email" id="login-email" required placeholder="seuemail@exemplo.com" class="w-full bg-stone-800 border border-stone-700 rounded-xl px-4 py-2.5 text-stone-100 focus:outline-none focus:border-amber-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-stone-400 uppercase mb-1">Senha</label>
+                    <input type="password" id="login-password" required placeholder="••••••••" class="w-full bg-stone-800 border border-stone-700 rounded-xl px-4 py-2.5 text-stone-100 focus:outline-none focus:border-amber-500">
+                </div>
+                <button type="submit" class="w-full bg-gold text-navy font-bold py-3.5 rounded-xl hover:bg-white transition shadow-lg mt-2">Entrar</button>
+            </form>
+
+            <!-- FORMULÁRIO DE CADASTRO -->
+            <form id="register-form" onsubmit="handleRegister(event)" class="p-6 space-y-4 hidden">
+                <div class="text-center mb-4">
+                    <h3 class="text-2xl font-bold logo-font text-gold">Criar Novo Perfil</h3>
+                    <p class="text-xs text-stone-400 mt-1">Cadastre-se para guardar seus livros favoritos</p>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-stone-400 uppercase mb-1">Nome Completo</label>
+                    <input type="text" id="reg-name" required placeholder="Seu nome" class="w-full bg-stone-800 border border-stone-700 rounded-xl px-4 py-2.5 text-stone-100 focus:outline-none focus:border-amber-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-stone-400 uppercase mb-1">E-mail</label>
+                    <input type="email" id="reg-email" required placeholder="seuemail@exemplo.com" class="w-full bg-stone-800 border border-stone-700 rounded-xl px-4 py-2.5 text-stone-100 focus:outline-none focus:border-amber-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-stone-400 uppercase mb-1">Crie uma Senha</label>
+                    <input type="password" id="reg-password" required placeholder="••••••••" class="w-full bg-stone-800 border border-stone-700 rounded-xl px-4 py-2.5 text-stone-100 focus:outline-none focus:border-amber-500">
+                </div>
+                <button type="submit" class="w-full bg-gold text-navy font-bold py-3.5 rounded-xl hover:bg-white transition shadow-lg mt-2">Cadastrar Perfil</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../script/script.js"></script>
+</body>
+</html>
